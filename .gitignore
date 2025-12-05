@@ -1,0 +1,32 @@
+# Entornos virtuales
+venv/
+env/
+.venv/
+
+# Archivos de Python compilados
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos de configuración del entorno
+.env
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de IDE / editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+
+# Carpeta de archivos temporales
+tmp/
+
+# Base de datos local
+database/scholarfi.db
