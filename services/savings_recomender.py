@@ -1,6 +1,7 @@
 # services/savings_recomender.py
 import random
 from datetime import datetime
+from decimal import Decimal
 
 def generate_savings_recommendations(transactions, goals):
     """
@@ -31,7 +32,8 @@ def generate_savings_recommendations(transactions, goals):
     
     messages = []
     for i, (category, amount) in enumerate(sorted_categories[:3]):  # Top 3 categories
-        suggested_saving = round(amount * (0.05 + random.random() * 0.1), 2)  # 5-15% saving
+        factor = Decimal('0.05') + Decimal(str(random.random() * 0.1))
+        suggested_saving = (amount * factor).quantize(Decimal('0.01'))
         days_remaining = max(1, 30 - datetime.now().day)
         daily_saving = round(suggested_saving / days_remaining, 2)
         months_saved = round(suggested_saving / 50, 1)  # example: £50/month goal
