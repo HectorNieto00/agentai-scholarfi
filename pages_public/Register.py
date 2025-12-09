@@ -1,7 +1,7 @@
 import streamlit as st
 import re
 from pathlib import Path
-from utils.styles import load_css
+from utils.styles import register_css
 from database.db_methods import create_user, get_user_by_email
 
 def is_strong_password(password):
@@ -11,9 +11,9 @@ def is_strong_password(password):
 
 def run():
     # --- Load CSS ---
-    load_css()
+    register_css()
 
-    st.title("Create Account")
+    st.markdown('<h1 style="font-size: 2.5em; font-weight: bold; color: #4a73ff">Create Account</h1>', unsafe_allow_html=True)
 
     name = st.text_input("Name", key="reg_name")
     email = st.text_input("Email", key="reg_email")

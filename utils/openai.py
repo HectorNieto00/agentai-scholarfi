@@ -46,19 +46,22 @@ TASK:
     {{
       "store": "...",
       "title": "...",
-      "price": "...",
+      "best_price": "...",
+      "store_link": "...",
       "justification": "..."
     }},
     {{
       "store": "...",
       "title": "...",
-      "price": "...",
+      "best_price": "...",
+      "store_link": "...",
       "justification": "..."
     }},
     {{
       "store": "...",
       "title": "...",
-      "price": "...",
+      "best_price": "...",
+      "store_link": "...",
       "justification": "..."
     }}
   ],
@@ -69,11 +72,10 @@ TASK:
 If you cannot identify 3 deals, return as many as possible (minimum 1 if available). If none, return empty selected.
 """)
 
-# El resto del código permanece igual...
-
 def analyze_products_with_llm(payload: dict) -> dict:
     """
     Envía productos + contexto al modelo gpt-4o-mini y retorna JSON parseado.
+    Mantiene los nombres best_price y store_link para compatibilidad con Streamlit.
     """
     spending_summary = json.dumps(payload.get("user_summary", {}), indent=2)
     products_json = json.dumps(payload.get("products", []), indent=2)
@@ -86,8 +88,8 @@ def analyze_products_with_llm(payload: dict) -> dict:
         
         response = llm.invoke(PROMPT.format(**chain_input)).content
         
-        # Intentar parsear JSON del modelo (mejorado con regex para extraer solo JSON)
-        json_match = re.search(r'\{.*\}', response, re.DOTALL)  # Busca el primer bloque JSON
+        # Extraer solo JSON
+        json_match = re.search(r'\{.*\}', response, re.DOTALL)
         if json_match:
             json_str = json_match.group(0)
             data = json.loads(json_str)

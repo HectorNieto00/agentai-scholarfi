@@ -87,7 +87,7 @@
 }
 
 /* --- BUTTONS --- */
-button[data-baseweb="button"] {
+.stButton > button {
     background-color: #816ffb;
     color: white;
     border-radius: 8px;
@@ -98,9 +98,8 @@ button[data-baseweb="button"] {
     cursor: pointer;
 }
 
-/* Cambiar color al pasar el mouse */
-button[data-baseweb="button"]:hover {
-    background-color: #f1effd;
+.stButton > button:hover {
+    background-color: #5a47d1;
 }
 
 .goal-header {
@@ -108,5 +107,31 @@ button[data-baseweb="button"]:hover {
     justify-content: space-between;
     align-items: center;
     font-weight: 600;
-    margin-bottom: 4px; /* espacio entre nombre y barra de progreso */
+    margin-bottom: 4px;
+}
+
+/* Sidebar styles */
+[data-testid="stSidebar"] {
+    background-color: #faf0ee !important; 
+    padding: 20px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+}
+.stSidebar .sidebar-content {
+    color: #f7f4f4 !important;
+}
+/* Estilos para las etiquetas de los radio buttons */
+.stRadio > div > div > label {
+    font-size: 16px !important;
+    color: #f7f4f4 !important;
+    padding: 10px !important;
+    border-radius: 5px !important;
+    transition: background-color 0.3s !important;
+}
+.stRadio > div > div > label:hover {
+    background-color: #e0e0e0 !important;
+}
+/* Estilo para el indicador seleccionado del radio */
+.stRadio > div > div > div[data-baseweb="radio"] > div {
+    background-color: #4CAF50 !important;  /* Verde para el radio seleccionado */
 }

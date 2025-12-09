@@ -25,7 +25,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); 
-    min-height: 620px;
+    min-height: 750px;
     text-align: center;
     background: #f3f7ff;
     border-radius: 15px;

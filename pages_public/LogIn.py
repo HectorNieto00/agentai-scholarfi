@@ -1,16 +1,17 @@
 import streamlit as st
 from utils.auth import login_user
-from utils.styles import load_css
+from utils.styles import login_css
 
 def run():
     # --- Load CSS ---
-    load_css()
+    login_css()
     
-    st.title("Welcome to scholarFi")
-    st.write("Please login or register to continue.")
+    st.markdown('<h1 style="font-size: 2.5em; font-weight: bold; color: #4a73ff">Welcome to ScholarFi </h1>', unsafe_allow_html=True)
+    st.markdown('<p style="font-size: 1.1em; color: #000000">Please login or register to continue.</p>', unsafe_allow_html=True)
 
     email = st.text_input("Email", key="login_email")
     password = st.text_input("Password", type="password", key="login_password")
+
 
     if st.button("Login"):
         if not email or not password:

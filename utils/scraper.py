@@ -147,10 +147,10 @@ def get_best_store_info(products: list) -> list:
     return products
 
 
-categories = ["cleaning", "health+beauty", "groceries", "online+shopping", "others"]
+# categories = ["cleaning", "health+beauty", "groceries", "online+shopping", "others"]
 
-products = get_products_by_categories(categories)
-final_products = get_best_store_info(products)
+# products = get_products_by_categories(categories)
+# final_products = get_best_store_info(products)
 
-for p in final_products:
-    print(p)
+# for p in final_products:
+#     print(p)

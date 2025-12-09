@@ -13,6 +13,7 @@ def run():
     # --- SESSION AUTH CHECK ---
     require_login()
     user_id = st.session_state.user_id
+    name = st.session_state.user_name
 
     # --- Load CSS ---
     load_css()
@@ -32,7 +33,7 @@ def run():
 
     # --- HEADER ---
     st.markdown(
-        "<div class='header-section'><h1>Welcome back!</h1><p>It is the best time to manage your finances</p></div>", 
+        f"<div class='header-section'><h1>Welcome back, {name}</h1><p>It is the best time to manage your finances</p></div>", 
         unsafe_allow_html=True
     )
 
@@ -115,18 +116,21 @@ def run():
                 user_categories = set(t['category'] for t in transactions if t['type'] == 'expense' and t['category'] in category_to_query)
                 queries = [category_to_query[cat] for cat in user_categories] if user_categories else ["groceries"]
                 user_context = {}
+                
+                # Add snippet while loading discounts
+                loading_msg = st.empty()
+                loading_msg.markdown('<div style="color: #d71f59; font-size: 1em; font-weight: bold;">🔍 ScholarFi is analyzing the best offers according to your spends...</div>', unsafe_allow_html=True)
                 discounts = get_top_discounts(queries, user_context)
+                loading_msg.empty() 
                 
                 if not discounts:
                     st.markdown("<div class='alert-warning'>No discounts available right now.</div>", unsafe_allow_html=True)
                 else:
                     for d in discounts[:5]:
-                        # Solo mostramos el mensaje IA completo
                         st.markdown(f"<div class='alert-warning'>{d.get('text', '')}</div>", unsafe_allow_html=True)
             except Exception as e:
                 st.error(f"Error loading discounts: {str(e)}")
         st.markdown("</div>", unsafe_allow_html=True)
-
     
     # --- Recent Transactions & Pie Chart ---
     col1, col2, col3 = st.columns([1.5, 1.25, 1])
